@@ -20,7 +20,7 @@ app.post('/', async (req, res) => {
 
     console.log(req.body.payload);
     console.log(req.body);
-    const text = `itysl ${req.body.text}`
+    const text = `@thelonelyisland ${req.body.text}`
     const responseURL = req.body.response_url;
 
     const response = await fetch(`${giphy.url}${text}`);
@@ -122,7 +122,7 @@ app.post('/button', async (req, res) => {
     
         query = query.substr(6);
     
-        const response = await fetch(`${giphy.url}itysl ${query}&offset=${count}`);
+        const response = await fetch(`${giphy.url}@thelonelyisland ${query}&offset=${count}`);
         const body = await response.json();
     
         responseBody = {
