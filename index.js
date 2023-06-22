@@ -12,14 +12,11 @@ const giphy = {
 app.use(express.urlencoded());
 
 app.get('/', (req, res) => {
-    console.log(req.body);
     res.send('hi');
 });
 
 app.post('/', async (req, res) => {
 
-    console.log(req.body.payload);
-    console.log(req.body);
     const text = `@thelonelyisland ${req.body.text}`
     const responseURL = req.body.response_url;
 
@@ -80,8 +77,6 @@ app.post('/', async (req, res) => {
 app.post('/button', async (req, res) => {
     const responseJSON = JSON.parse(req.body.payload);
 
-    console.log(responseJSON);
-
     let responseBody = {};
 
     let responseURL = responseJSON.response_url;
@@ -110,7 +105,6 @@ app.post('/button', async (req, res) => {
         });
 
         const sendResult = await sendResponse.json();
-        console.log(sendResult);
 
         responseBody = {
             'delete_original':"true"
@@ -124,7 +118,9 @@ app.post('/button', async (req, res) => {
     
         const response = await fetch(`${giphy.url}@thelonelyisland ${query}&offset=${count}`);
         const body = await response.json();
-    
+        
+        console.log(body.data);
+
         responseBody = {
             "replace_original": "true",
             "blocks": [
@@ -173,8 +169,6 @@ app.post('/button', async (req, res) => {
         };
     }
 
-
-    console.log(responseBody);
     const sendResponse = await fetch(responseURL, {
         method: 'post',
         body: JSON.stringify(responseBody),
@@ -184,7 +178,6 @@ app.post('/button', async (req, res) => {
     });
 
     const sendBody = await sendResponse.json();
-    console.log(sendBody);
 
     res.send();
 });
