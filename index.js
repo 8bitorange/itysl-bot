@@ -91,7 +91,12 @@ app.post('/button', async (req, res) => {
                 {
                     "type": "image",
                     "image_url": `${responseJSON.actions[0].value}`,
-                    "alt_text": ''
+                    "alt_text": '',
+                    "title": {
+                        "type": "plain_text",
+                        "text": `Posted by: ${responseJSON.user.username}`,
+                        "emoji": true
+                    },
                 }
             ]
         };
