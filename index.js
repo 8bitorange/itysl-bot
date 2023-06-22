@@ -191,4 +191,5 @@ app.post('/button', async (req, res) => {
 
 app.listen(port, '0.0.0.0', () => {
     console.log('howdy doody'); 
+    console.log(`Server started on 0.0.0.0 on port ${port}`);
 });
