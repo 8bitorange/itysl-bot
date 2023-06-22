@@ -3,7 +3,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 const app = express();
-const port = 3030;
+const port = 80;
 
 const giphy = {
     url: `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY}&limit=1&q=`,
